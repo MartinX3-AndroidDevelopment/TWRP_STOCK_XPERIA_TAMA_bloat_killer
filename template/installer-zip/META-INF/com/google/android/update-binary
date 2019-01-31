@@ -105,7 +105,10 @@ PACKAGES=(
 )
 
 print "mount"
-mount -orw,remount /system
+umount /system
+umount /system_root
+mount /dev/block/by-name/system$(getprop ro.boot.slot_suffix) /system_root
+mount -o bind /system_root/system /system
 mount -orw,remount /vendor
 mount -orw,remount /oem
 
@@ -142,6 +145,8 @@ do
 done
 
 print "unmount"
+umount /system
+umount /system_root
 mount -oro,remount /system
 mount -oro,remount /vendor
 mount -oro,remount /oem
