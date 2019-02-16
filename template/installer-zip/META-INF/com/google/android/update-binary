@@ -94,21 +94,18 @@ do
 	if [[ ! -z ${apkpath} && ${apkpath} != "" ]]; then
 		delimiter="/"
 		array=(${apkpath//$delimiter/ })
-    	print ${array}
 		sysfolder="/${array[0]}/${array[1]}"
-    	print ${sysfolder}
 		apkfolder="${sysfolder}/${array[2]}"
-	    print ${apkfolder}
 		if [[ ${sysfolder} == "/system/app" ]]; then
-			rm -r ${apkfolder}
+			rm -rf ${apkfolder}
 		elif [[ ${sysfolder} == "/system/priv-app" ]]; then
-			rm -r ${apkfolder}
+			rm -rf ${apkfolder}
 		elif [[ ${sysfolder} == "/oem/app" ]]; then
-			rm -r ${apkfolder}
+			rm -rf ${apkfolder}
 		elif [[ ${sysfolder} == "/oem/priv-app" ]]; then
-			rm -r ${apkfolder}
+			rm -rf ${apkfolder}
 		elif [[ ${sysfolder} == "/vendor/app" ]]; then
-			rm -r ${apkfolder}
+			rm -rf ${apkfolder}
 		fi
 		print ${apkfolder}
 	fi
